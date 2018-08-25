@@ -313,7 +313,7 @@
     {
     		$.ajax({
     			type:"post",
-    			url:"http://m.niaobj.com/api/filter",
+    			url:"http://apim.niaobj.com/api/filter",
     			dataType:'json',
     			data : {
     				'category' : selectArr[0],
@@ -326,7 +326,7 @@
 	               html += '<div class="col_4">';
 	               html += '<div class="col_4_img">';
 	               html += '<a href="./artwork.html?id='+ item['id'] +'">';
-	               html += '<img src="http://m.niaobj.com/Assets/Images/lists/'+item['image_id']+'.jpg" class="thumb">';
+	               html += '<img src="http://apim.niaobj.com/Assets/Images/lists/'+item['image_id']+'.jpg" class="thumb">';
 	               html += '<input style="display: none" value="img/1503384763.jpeg" class="s_img">';  
 	               html += '</a>'; 
 	               html += '</div>';  

@@ -86,9 +86,9 @@
                       <p></p>
                       <p><br></p>
                       <p>
-                      	<img src="img/artwork/1488077743114034.jpg" style="max-width:100%" data-loadsrc="/ueditor/php/upload/image/20170226/1488077743114034.jpg">
+                      	<img id='main-pic' src="" style="max-width:100%" data-loadsrc="">
                       </p>
-                      <p><span>我本沉默之飞扬</span> <p><span> 200Y</span></p>   
+                      <p><span id='pic-name'>未命名</span> <p><span id='pic-price'> 200Y</span></p>   
                       <div id="carts">
                             <a class="confirm-ok" onclick="delay()">加入购物车</a>
                             <a class="confirm-ok" onclick="delay()">立即购买</a>
@@ -102,11 +102,10 @@
                     <div class="line"></div>
                     <ul>
                         <li><span>商品类型</span>：油画</li>
-                        <li class="size"><span>商品尺寸</span>：<span class="chang" style="width:auto">60*</span>
+                        <li class="size"><span>商品尺寸</span>：<span class="chang" style="width:auto">50*40</span>
                             <span class="kuan" style="width:auto">6</span>
                         </li>
                         <li><span>商品版式</span>：手绘</li>
-                        <li><span>作者</span>：陳建周</li>
                     </ul>
                 </div>
             </div>
@@ -285,6 +284,58 @@
             }
         })
     });
+        	function guessULike() 
+    	{
+    		$.ajax({
+    			type:"post",
+    			url:"http://apim.niaobj.com/api/recommends",
+    			success : function(data) { // 提交成功的回调函数
+    			   var html = '';
+    			   $.each(data.data, function(i , item) {
+    			   	   html += '<div class="col-50" style="margin-bottom:10px;">';
+                   html += '<a href="./artwork.html?id='+item['id']+'">';
+                   html += '<div class="img">';
+                   html += '<img src="http://apim.niaobj.com/Assets/Images/lists/'+item['image_id']+'.jpg">';
+                   html += '</div>';
+                   html += '<div class="text">';
+                   html += '<span style="font-size:0.55rem; width:100%;display:inline-block; overflow: hidden;white-space: nowrap; text-overflow: ellipsis;">'+item['name']+'</span>';
+                   html += '<span class="price">¥'+item['price']+'</span>';
+                   html += '</div>';
+                   html += '</a>';
+                   html += '</div>';
+    			   });
+			   $("#guessulike").empty();
+			   $("#guessulike").append(html);
+		  } 
+		 });
+    	}
+    	   function itemInfo() {
+    		var id = getQueryString('id');
+    		$.ajax({
+    			type:"post",
+    			dataType : 'json',
+    			data : {
+    				id : id
+    			},
+    			url:"http://apim.niaobj.com/api/item",
+    			success : function(data) { // 提交成功的回调函数
+    			   var html = '';
+    			   var info = data.data[0];
+    			   $('title').html(info['name']);
+			   $('#main-pic').attr('src','http://apim.niaobj.com/Assets/Images/details/'+info['image_id']+'.jpg')
+			   $('#pic-name').html(info['name']);
+			   $('#pic-price').html(info['price']);
+		  } 
+		 });
+    }
+    
+    function getQueryString(name)
+	{
+	     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	     var r = window.location.search.substr(1).match(reg);
+	     if(r!=null)return  unescape(r[2]); return null;
+	}
+	
     $(function () {
     	/*
         var imgItem = $('#imgCon').find('img');
@@ -386,7 +437,6 @@
     for (var i = 0; i < com.length; i++) {
         arr.push(com.eq(i).find('input').val());
     }
-    console.log(arr);
     var obj;
     for (var j = 0; j < com.length; j++) {
         obj = new Star(arr[j], com.eq(j).find('.star'));
@@ -443,70 +493,9 @@
             },
         });
     });
-    function itemInfo() {
-    		var id = getQueryString('id');
-    		console.log(id);
-    		$.ajax({
-    			type:"post",
-    			dataType : 'json',
-    			data {
-    				id : id
-    			},
-    			url:"http://apim.niaobj.com/api/item",
-    			success : function(data) { // 提交成功的回调函数
-    			   var html = '';
-    			   $.each(data.data, function(i , item) {
-    			   	   html += '<div class="col-50" style="margin-bottom:10px;">';
-                   html += '<a href="./artwork.html?id='+item['id']+'">';
-                   html += '<div class="img">';
-                   html += '<img src="http://apim.niaobj.com/Assets/Images/lists/'+item['image_id']+'.jpg">';
-                   html += '</div>';
-                   html += '<div class="text">';
-                   html += '<span style="font-size:0.55rem; width:100%;display:inline-block; overflow: hidden;white-space: nowrap; text-overflow: ellipsis;">'+item['name']+'</span>';
-                   html += '<span class="price">¥'+item['price']+'</span>';
-                   html += '</div>';
-                   html += '</a>';
-                   html += '</div>';
-    			   });
-			   $("#guessulike").empty();
-			   $("#guessulike").append(html);
-		  } 
-		 });
-    }
+ 
     
-    	function guessULike() 
-    	{
-    		$.ajax({
-    			type:"post",
-    			url:"http://apim.niaobj.com/api/recommends",
-    			success : function(data) { // 提交成功的回调函数
-    			   var html = '';
-    			   $.each(data.data, function(i , item) {
-    			   	   html += '<div class="col-50" style="margin-bottom:10px;">';
-                   html += '<a href="./artwork.html?id='+item['id']+'">';
-                   html += '<div class="img">';
-                   html += '<img src="http://apim.niaobj.com/Assets/Images/lists/'+item['image_id']+'.jpg">';
-                   html += '</div>';
-                   html += '<div class="text">';
-                   html += '<span style="font-size:0.55rem; width:100%;display:inline-block; overflow: hidden;white-space: nowrap; text-overflow: ellipsis;">'+item['name']+'</span>';
-                   html += '<span class="price">¥'+item['price']+'</span>';
-                   html += '</div>';
-                   html += '</a>';
-                   html += '</div>';
-    			   });
-			   $("#guessulike").empty();
-			   $("#guessulike").append(html);
-		  } 
-		 });
-    	}
-    
-    function getQueryString(name)
-	{
-	     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-	     var r = window.location.search.substr(1).match(reg);
-	     if(r!=null)return  unescape(r[2]); return null;
-	}
-	
+
 	function delay() 
 	{
 		alert('功能尚未开放,购买请联系运营人员');
