@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<!-- saved from url=(0023)http://m.niaobj.com/ -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>新闻</title>
+    <link rel="stylesheet" type="text/css" href="css/common/sm.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/common/sm-extend.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/common/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/shops.css" />
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    
+    <style>
+
+        .shop-screen {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 1);
+        }
+
+        .shop-screen .screen-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .shop-screen .screen-bg img {
+            height: 100%;
+            display: none;
+        }
+
+        .shop-screen .screen-info {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 11rem;
+        }
+
+        .shop-screen .screen-info .arrowD {
+            position: absolute;
+            text-align: center;
+            left: 0;
+            bottom: 1.45rem;
+            width: 100%;
+            height: 1.4rem;
+            z-index: 19;
+        }
+
+        .shop-screen .screen-info .arrowD > span {
+            display: inline-block;
+            margin: 0 auto;
+            color: #ffffff;
+            width: 1.4rem;
+            height: 1.4rem;
+            font-size: 1rem;
+        }
+
+        .shop-screen .screen-info > h2 {
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 1.4rem;
+            letter-spacing: .2rem;
+        }
+
+        .shop-hd {
+            position: relative;
+            width: 100%;
+            height: 11.4rem;
+            /*color: #ffffff;*/
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+
+        .clear::after {
+            content: '';
+            display: block;
+            clear: both;
+            visibility: visible;
+        }
+
+        .shop-hd img {
+            vertical-align: top;
+            width: 100%;
+            border: none;
+        }
+
+        .shop-hd .inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 11.4rem;
+            background-color: rgba(0, 0, 0, .6);
+            z-index: 100;
+        }
+
+        .shop-hd .shop-hd-box {
+            position: absolute;
+            box-sizing: border-box;
+            padding: .5rem;
+            bottom: 0;
+            left: 50%;
+            margin-left: -7rem;
+            width: 14rem;
+            color: #333;
+            z-index: 500;
+        }
+
+        .shop-hd .shop-hd-box .shop-logo {
+            overflow: hidden;
+            width: 3.4rem;
+            height: 3.4rem;
+            border: .1rem solid #ffffff;
+            border-radius: 50%;
+            margin: 0 auto .5rem;
+            background-color: black;
+        }
+
+        .shop-hd .shop-hd-box .shop-con {
+
+            padding: .2rem 0 .3rem;
+            font-size: .7rem;
+            line-height: .7rem;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .shop-hd .shop-hd-box .describe {
+            box-sizing: content-box;
+            padding: 0;
+            margin: .2rem 0;
+            height: 1.4rem;
+            overflow: hidden;
+        }
+
+        .shop-hd .shop-hd-box .shop-con .iconfont {
+            font-size: .6rem;
+            margin: 0 .4rem 0 0;
+        }
+
+        .shop-hd .shop-hd-box .info span {
+            display: block;
+            float: left;
+        }
+
+        .shop-hd .shop-hd-box .info span:first-child {
+            text-align: right;
+        }
+
+        .shop-hd .shop-hd-box .info span:last-child {
+            text-align: left;
+        }
+
+        .shop-hd .shop-hd-box .info span.line {
+            width: 1rem;
+        }
+
+        .shop-hd .shop-hd-box .name {
+            font-size: 1rem;
+            line-height: 1rem;
+        }
+
+        .item2 .hint, .item3 .hint {
+            padding-top: 1rem;
+            text-align: center;
+            font-size: .6rem;
+        }
+
+        /*首页轮播*/
+        .item1 .banner {
+            width: 100%;
+            height: 10rem;
+        }
+
+        .item1 .banner .swiper-container {
+            width: 100%;
+            height: 10rem;
+        }
+
+        .item1 .banner .swiper-container .swiper-slide > a {
+            display: block;
+        }
+
+        .item1 .banner .swiper-container img {
+            width: 100%;
+            vertical-align: top;
+        }
+
+        .item1 .recommend {
+            position: relative;
+            background-color: #f7f7f7;
+            margin-top: .5rem;
+            width: 100%;
+            padding-top: .55rem;
+        }
+
+        .item1 .recommend h3 {
+            margin: 0;
+            text-indent: .5rem;
+            padding-bottom: .45rem;
+        }
+
+        .item1 .recommend .swiper-container {
+            padding-bottom: .75rem;
+            margin-bottom: .5rem;
+        }
+
+        .item1 .recommend .swiper-container .re-lists {
+            width: 100%;
+            background-color: #ffffff;
+        }
+
+        .item1 .recommend .swiper-container .re-lists a {
+            display: block;
+            width: 100%;
+            height: 4.8rem;
+            overflow: hidden;
+        }
+
+        .item1 .recommend .swiper-container .re-lists img {
+            width: 100%;
+            vertical-align: top;
+        }
+
+        .item1 .recommend .swiper-container .re-lists .re-info {
+            padding: .3rem;
+            text-align: center;
+        }
+
+        /*广告位*/
+        .item1 .ad {
+            width: 100%;
+            height: 4.2rem;
+            margin-bottom: 0.75rem;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .item1 .ad a {
+            display: block;
+            width: 100%;
+            height: 4.2rem;
+        }
+
+        .item1 .ad a .ad-img {
+            width: 100%;
+            vertical-align: top;
+        }
+
+        .screen-bg {
+
+        }
+
+        .card {
+            box-shadow: none;
+        }
+
+        .eee {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            background: url("img/news/shoph_bg.png") 0 bottom repeat-x;
+            left: 0;
+            bottom: 0;
+        }
+
+        .shop-con .guanzhu {
+            padding: 2px 12px;
+            font-size: .7rem;
+            border-radius: 2px;
+            border: 1px solid #dddddc;
+        }
+
+        .shop-con .guanzhu1 {
+            font-size: .7rem;
+            padding: 2px 7px;
+            border-radius: 2px;
+            background-color: #2fa5bf;
+            color: #fff;
+        }
+
+        .footer_div_text {
+            background-color: #fff;
+
+        }
+
+        .footer_div_text img {
+            display: -webkit-box;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .img_p_e {
+            margin: 20px 0px;
+        }
+
+        .img_p_e p {
+            color: #666666;
+            margin: 0px;
+            font-size: 0.7rem;
+            text-align: center;
+            line-height: 1.4rem;
+        }
+
+        .content_foot {
+            width: 100%;
+            position: relative;
+            margin: 0px auto 20px;
+        }
+
+        .media-list {
+            display: none;
+        }
+
+        .content_foot .list-block.media-list .one {
+            font-size: 12px;
+            width: 100%;
+        }
+
+        .content_foot .list-block.media-list .item-title {
+            font-size: 14px;
+        }
+
+        .content_foot .list-block.media-list .item-title span a {
+            color: #ff783e;
+        }
+
+        .content_foot p {
+            font-size: 14px;
+            text-align: center;
+            margin: 20px auto 0;
+        }
+
+        .content_foot .footer_b p:nth-child(1) {
+            padding: 5px 5px;
+            border: 1px #dddddc solid;
+            width: 270px;
+        }
+
+        .content_foot .list-block {
+            margin: 1rem 0;
+        }
+
+        .footer_text {
+            text-align: center;
+            width: 4.2rem;
+            border-radius: 3px;
+            margin: 10px auto;
+            background-color: #ff873e;
+            color: #ffffff;
+            font-size: 0.65rem;
+            line-height: 30px;
+        }
+
+        /*  申请版权  */
+        .div_application {
+          width: 100%;
+        }
+
+        .application {
+            margin: 0 auto;
+            background-color: #e5ac00;
+            width: 4.4rem;
+            height: 1.1rem;
+            line-height: 1.1rem;
+            font-size: 0.7rem;
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .div_random_bj {
+            display: none;
+            background-color: #000;
+            opacity: 0.2;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 9998;
+        }
+
+        .div_random {
+            margin-left: 5%;
+            display: none;
+            width: 90%;
+            position: fixed;
+            padding: 0.7rem 1rem 1rem 1rem;
+            height: 460px;
+            top:50%;
+            margin-top: -230px;
+            background-color: #fff;
+            z-index: 9999;
+            border-radius: 15px;
+            box-shadow: 0 0 35px #333;
+        }
+
+        .block_level {
+            margin: 0 auto;
+        }
+        .block_level div{
+            width: 85%;
+            margin: 0 auto;
+        }
+
+        .block_level div input {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            font-size: 16px;
+            border: 1px solid #000000;
+            padding-left: 15px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .block_level div select {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            font-size: 16px;
+            border: 1px solid #000000;
+            padding-left: 15px;
+            color: #333;
+        }
+
+        .submit_application {
+            width: 85%;
+            line-height: 40px;
+            height: 40px;
+            color: #fff;
+            text-align: center;
+            letter-spacing: 5px;
+            font-size: 16px;
+            background-color: #333333;
+            margin: 15px auto;
+            cursor: pointer;
+        }
+
+        .div_form_ation {
+            text-align: center;
+            font-size: 18px;
+            letter-spacing: 2px;
+            margin: 15px auto 15px;
+        }
+
+        .div_error {
+            background-color: #f4f4f4;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            margin: 0px auto;
+            cursor: pointer
+        }
+        .category ,.all_ids{
+            display: none;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+<div class="div_random_bj">
+	
+</div>
+
+<div class="page-group">
+	
+    <div class="page page-current">
+    	<nav class="bar bar-tab" style="background-color: #fff">
+    <a class="tab-item external" href="./index.html">
+        <span class="icon icon-home"></span>
+        <span class="tab-label homes">首页</span>
+    </a>
+    <a class="tab-item external" href="./category.html">
+        <span class="icon icon-app"></span>
+        <span class="tab-label mys">分类</span>
+    </a>
+    <a class="tab-item external" id="taobaowang" href="./news.html">
+        <span class="icon icon-me"></span>
+        <span class="tab-label taobao_text" style="top:2px;">鸟布鲸</span>
+    </a>
+    <!--a class="tab-item external" href="">
+        <span class="icon my_icon"></span>
+        <span class="tab-label shopping_carts">我</span>
+    </a-->
+
+</nav>
+        <div class="content">
+            <div class="shop-screen">
+                <div class="screen-bg">
+                    <input style="display: none" value="img/news/1502187550.jpeg" class="screen-bg-img">
+                    <img src="img/news/1502187550.jpeg" alt="">                </div>
+                <div class="eee">
+
+                </div>
+                <div class="screen-info">
+                    <h2>造客</h2>
+                    <div class="shop-con describe" style="color: #fff;text-align: center;margin:0px 15px;">除了脸上的皱纹，除了苍白的记忆，你是否会怀念着我们曾经文艺过的那些年......</div>
+                    <div class="arrowD"><span class="arr-down iconfont icon-jiantou-copy"></span></div>
+                </div>
+            </div>
+            <input style="display: none" value="" id="session">
+
+
+            <div class="shop-box clear">
+                <div class="shop-item item3" style="display: block">
+                    <div class="content-padded">
+                        <div class="article-item clearfix">
+                                <div class="article-img">
+                                    <a href="http://mp.weixin.qq.com/s/VuJcGa7VtcyCwgk_XLBGdg">
+                                            <img src="img/news/1502247213.png" alt="">
+                                        </a>
+                                                                        </div>
+                                <div class="article-info">
+                                    <div class="tit">凭什么能赢？</div>
+                                    <div class="text">你只闻到我的香水，却没看到我的汗水；你有你的规则，我有我的选择。</div>
+                                    <div class="read-btn">
+                                        <a href="http://mp.weixin.qq.com/s/VuJcGa7VtcyCwgk_XLBGdg">
+                                                【阅读文章】
+                                            </a>
+                                                                                </div>
+                                </div>
+                            </div><div class="article-item clearfix">
+                                <div class="article-img">
+                                    <a href="http://mp.weixin.qq.com/s/rMt0XOADKNEWg8Me8MsubA">
+                                            <img src="img/news/1502247213.png" alt="">
+                                        </a>
+                                                                        </div>
+                                <div class="article-info">
+                                    <div class="tit">我们无处安放的青春</div>
+                                    <div class="text">我的兄弟叫我去闯，带上他的梦想，放下情感的煎熬，是最难一劫的浪。</div>
+                                    <div class="read-btn">
+                                        <a href="http://mp.weixin.qq.com/s/rMt0XOADKNEWg8Me8MsubA">
+                                                【阅读文章】
+                                            </a>
+                                                                                </div>
+                                </div>
+                            </div><div class="article-item clearfix">
+                                <div class="article-img">
+                                    <a href="http://mp.weixin.qq.com/s/A5sQPEW3U3BLNWMQPIkkrA">
+                                            <img src="img/news/1502247213.png" alt="">
+                                        </a>
+                                                                        </div>
+                                <div class="article-info">
+                                    <div class="tit">你好，亲爱的陌生人</div>
+                                    <div class="text">去做自己喜欢的事，不要怕走得慢，没有任何人的进步是可以在短时间内发生的。</div>
+                                    <div class="read-btn">
+                                        <a href="http://mp.weixin.qq.com/s/A5sQPEW3U3BLNWMQPIkkrA">
+                                                【阅读文章】
+                                            </a>
+                                                                                </div>
+                                </div>
+                            </div><div class="article-item clearfix">
+                                <div class="article-img">
+                                    <a href="http://mp.weixin.qq.com/s?__biz=MzA4MzM4ODE4Mw==&mid=2650988280&idx=1&sn=feeb04af654a33f1df3b3c452d062d53&scene=0#wechat_redirect">
+                                            <img src="img/news/1502247213.png" alt="">
+                                        </a>
+                                                                        </div>
+                                <div class="article-info">
+                                    <div class="tit">张显飞——绘画狂者、大爱疗伤</div>
+                                    <div class="text">如果把画画当做一种工作方式，希望得到什么，或者说为了画画而去画的话，那可能我今天已经不再画画了。画画对我的意义不是那样的。</div>
+                                    <div class="read-btn">
+                                        <a href="http://mp.weixin.qq.com/s?__biz=MzA4MzM4ODE4Mw==&mid=2650988280&idx=1&sn=feeb04af654a33f1df3b3c452d062d53&scene=0#wechat_redirect">
+                                                【阅读文章】
+                                            </a>
+                                                                                </div>
+                                </div>
+                            </div><div class="article-item clearfix">
+                                <div class="article-img">
+                                    <a href="http://mp.weixin.qq.com/s/B0p6A5wIHXxN0U2GrPXPrQ">
+                                            <img src="img/news/1502247213.png" alt="">
+                                        </a>
+                                                                        </div>
+                                <div class="article-info">
+                                    <div class="tit">回顾 | 找到一种带劲的方式</div>
+                                    <div class="text">当你看到那种保持500年、600年油画的时候，就会觉得你的差距很大；很刺激，那是一种动力。</div>
+                                    <div class="read-btn">
+                                        <a href="http://mp.weixin.qq.com/s/B0p6A5wIHXxN0U2GrPXPrQ">
+                                                【阅读文章】
+                                            </a>
+                                                                                </div>
+                                </div>
+                            </div><div class="article-item clearfix">
+                                <div class="article-img">
+                                    <a href="http://mp.weixin.qq.com/s?__biz=MzA4MzM4ODE4Mw==&mid=2650987937&idx=1&sn=4e3217d01a3020ba7f26576b50c68f06&scene=0#wechat_redirect">
+                                            <img src="img/news/1502247213.png" alt="">
+                                        </a>
+                                                                        </div>
+                                <div class="article-info">
+                                    <div class="tit">不作茧就不会自缚——艺术大家王华祥</div>
+                                    <div class="text">时间每天都在消逝，不可逆转，换句话说，有人在消耗时间，有人在销毁时间，有人在消费时间，我三条都占了，但更热衷于销毁或者消费时间，方法是将它置换成孩子和作品，所以，我视孩子宝贝，视作品宝贵。</div>
+                                    <div class="read-btn">
+                                        <a href="http://mp.weixin.qq.com/s?__biz=MzA4MzM4ODE4Mw==&mid=2650987937&idx=1&sn=4e3217d01a3020ba7f26576b50c68f06&scene=0#wechat_redirect">
+                                                【阅读文章】
+                                            </a>
+                                                                                </div>
+                                </div>
+                            </div>                    </div>
+                </div>
+                <div class="shop-item item4">
+                    <div class="content-padded"><p>搜猎人成立于2015年，以“平台化整合创新”为理念、打造高品质电子商务平台，经营具有原创性产品，汇集艺术家、设计师、手工业者、创新跨界独立品牌等<br></p></div>
+                </div>
+            </div>
+            <div class="footer_div_text">
+                <div>
+                    <div class="img_p_e">
+                        <p>想要了解更多原创产品，</p>
+                        <p>请微信搜索“搜猎人“公众号即可进入商城</p>
+                    </div>
+                </div>
+                <div class="content_foot">
+                    <div class="footer_text">
+                        关于我们
+                    </div>
+                    <div class="list-block media-list" style="margin: 0px">
+                        <ul>
+                            <li class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title one">第一次来搜猎人?
+                                                <span><a class="external" href="/index.php/Home/Mobile/index.html">注册</a></span>
+                                                <span style="float: right"><a class="external"
+                                                                              href="/index.php/Home/Customer/Login.html">登录</a></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>                            <li>
+                                <a href="/index.php/Home/Static/sell.html" class="item-link item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title">在搜猎人出售</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/index.php/Home/Static/about.html" class="item-link item-content external">
+                                    <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title">关于我们</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/index.php/Home/Static/join.html" class="item-link item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title">加入我们</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/index.php/Home/Static/business.html" class="item-link item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title">商务合作</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/index.php/Home/Static/contact.html" class="item-link item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title">联系我们</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+               
+                <div>
+                    <div style="   font-size: 0.7rem; margin: 0px 1rem ; padding-bottom: 28px; clear: both">
+                        <p style="margin: 0px; float: left">阅读数:13142<span class="read"></span></p>
+                    </div>
+                </div>
+                            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/swiper.min.js"></script>
+<script type="text/javascript" src="js/ImgLoad.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+
+<script>
+    $('.submit_application').click(function () {
+        var data ={
+            customer_name:$('.customer_name').val(),
+            token:$('.token').val(),
+            category:$('.category').val(),
+            customer_company:$('.customer_company').val(),
+            customer_phone:$('.customer_phone').val(),
+            customer_mail:$('.customer_mail').val(),
+            industry:$('.industry').val(),
+            all_ids:$('.all_ids').val()
+        };
+        $.ajax({
+            type: "POST",
+            url: "../../../copyright/shopAuthorization",
+            data: data,
+            dataType: 'json',
+            success: function (data) {
+                if (data.status == -10086) {
+                    alert(data.msg);
+                    return false;
+                }else if (data.status == -1) {
+                    alert(data.msg);
+                    return false;
+                } else if (data.status == 1) {
+                    alert("申请成功，稍后有搜猎人工作人员联系您！");
+                    location.reload();
+                    return true;
+                }
+            }
+        })
+    });
+    $('.div_error').click(function () {
+        $('.div_random_bj').hide();
+        $('.div_random').hide();
+    });
+    $('.application').click(function () {
+        $('.div_random_bj').show();
+        $('.div_random').show();
+    });
+
+    //获取店铺名字
+    var onOff = true;
+    $('.footer_text').click(function () {
+        if (onOff) {
+            $('.media-list').show();
+            $('.content').animate({scrollTop: "20000px"}, 3000)
+            onOff = false;
+        } else {
+            $('.media-list').hide();
+            onOff = true;
+        }
+    });
+    wx.config({
+        debug: false,
+        appId: "wxe5768265579cc828",
+        timestamp: "1533788879",
+        nonceStr: "8aiy5asJNllgWV2Q",
+        signature: "96bbf9204b0127743addb08540e638dad64d15b4",
+        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'] // 功能列表，我们要使用JS-SDK的什么功能
+    });
+    var link = location.href;
+    var host = location.host;
+    wx.ready(function () {
+        // 获取“分享到朋友圈”按钮点击状态及自定义分享内容接口
+        wx.onMenuShareTimeline({
+            title: '原创者:造客-Ta在搜猎人等你', // 分享标题
+            link: link,
+            imgUrl: "http://" + host + "./Upload/image/2017-06-21/1498037830.png", // 分享图标
+
+        });
+        // 获取“分享给朋友”按钮点击状态及自定义分享内容接口
+        wx.onMenuShareAppMessage({
+            title: '原创者:造客-Ta在搜猎人等你', // 分享标题
+            desc: "除了脸上的皱纹，除了苍白的记忆，你是否会怀念着我们曾经文艺过的那些年......", // 分享描述
+            link: link,
+            imgUrl: "http://" + host + "./Upload/image/2017-06-21/1498037830.png", // 分享图标
+            type: 'link', // 分享类型,music、video或link，不填默认为link
+        });
+    });
+</script>
+<script>
+    $('.follow').click(function () {
+        var shop_id = $('#shop_id').val();
+        $.ajax({
+            type: "POST",
+            url: "../../../CustomerCollection/customer_collection",
+            data: {shop_id: shop_id},
+            dataType: 'json',
+            success: function (data) {
+                if (data.status == -1) {
+                    alert(data.msg);
+                    location.href = '../../../Customer/Login';
+                    return false;
+                } else if (data.status == -404) {
+                    alert(data.msg);
+                    return false;
+                } else if (data.status == 1) {
+                    location.replace(location.href);
+                    return false;
+                } else if (data.status == 2) {
+                    alert(data.msg);
+                }
+            }
+        })
+    });
+
+    var price = $('.price');
+    $.each(price, function (index, dom) {
+        var ee = $(dom).html();
+        if (ee == '-1.00') {
+            $(dom).empty();
+            $(dom).html('议价');
+        } else if (ee == '-2.00') {
+            $(dom).empty();
+            $(dom).html('非卖品');
+        } else if (ee == '-3.00') {
+            $(dom).empty();
+            $(dom).html('已售');
+        } else if (ee == '-4.00') {
+            $(dom).empty();
+            $(dom).html('展示');
+        }
+    });
+    var img = $('.screen-bg-img').val();
+    $('.screen-bg').css("background", "url(" + img + ") center center no-repeat");
+    $('.screen-bg').css( 'background-size', 'auto 100%');
+    $(function () {
+        var $recommend = $('.recommend'),
+            $reImg = $recommend.find('img').length,
+            $shopSc = $('.shop-screen'),
+            $shopBg = $shopSc.find('img').length,
+            $banner = $('.banner'),
+            $bImgLen = $banner.find('img').length;
+        if ($bImgLen == 0) {
+            $banner.remove();
+        } else if ($bImgLen == 1) {
+            $banner.find('.swiper-pagination').hide();
+        }
+        if ($shopBg == 0) {
+            $shopSc.remove();
+        }
+        if ($reImg == 0) {
+            $recommend.remove();
+        }
+
+        $('.shop-nav li').click(function () {
+            var index = $(this).index();
+            $(this).addClass('active').siblings().removeClass('active');
+            $('.shop-item').eq(index).show().siblings().hide();
+        });
+        var arrowD = $('.arr-down'),
+            sTop = document.body.clientHeight;
+        arrowD.click(function () {
+            $('.content').animate({scrollTop: sTop}, 500);
+        });
+        var swiper = new Swiper('.banner .swiper-container', {
+            pagination: '.swiper-pagination',
+            autoplay: 3500,
+            autoplayDisableOnInteraction: false
+        });
+
+        var swiper2 = new Swiper('.recommend .swiper-container', {
+            slidesPerView: 2.5,
+            spaceBetween: 10,
+            freeMode: true
+        });
+        //没有内容时候
+        var videoCon = $('.item2 .row'),
+            articleCon = $('.item3 .content-padded');
+        var session = $('#session').val(),
+            mySessionStr = window.location.href;
+        var userSession = mySessionStr.substring(mySessionStr.lastIndexOf('/') + 1, mySessionStr.lastIndexOf('.'));
+//            console.log(userSession,session)
+
+        
+
+        if (articleCon.html().trim() == '' && userSession == session) {
+            var infoA1 = '<div class="col-100 hint">您暂时还没有文章，请发表您的文章！</div>';
+            articleCon.append(infoA1);
+        } else if (articleCon.html().trim() == '' && userSession != session) {
+            var infoA2 = '<div class="col-100 hint">该店铺还没有上传文章！</div>';
+            articleCon.append(infoA2);
+        }
+
+
+        var $lists = $('.lists'),
+            $moreBtn = $('.more-btn'),
+            arr_card = new Array($lists.length);
+
+        for (var k = 0; k < arr_card.length; k++) {
+            arr_card[k] = 8;
+            $lists.eq(k).attr('data-index', k);
+            $moreBtn.eq(k).attr('data-num', 0);
+        }
+
+        for (var i = 0; i < $lists.length; i++) {
+            var cardLen = $lists.eq(i).find('.col-50').length;
+            var count = Math.ceil(cardLen / 8);
+
+            $lists.eq(i).attr('data-count', count);
+            if (cardLen > 8) {
+                for (var j = 0; j < 8; j++) {
+                    $lists.eq(i).find('.col-50').eq(j).show();
+                }
+            } else if (cardLen == 0) {
+                $lists.eq(i).parents('.my-box').remove();
+            } else {
+                $lists.eq(i).find('.col-50').show();
+                $moreBtn.eq(i).hide();
+            }
+        }
+
+        $moreBtn.click(function () {
+            var num = $(this).attr('data-num');
+            var dataCount = $(this).prev('.lists').attr('data-count');
+            if (num < dataCount - 1) {
+                var index = $(this).prev('.lists').attr('data-index');
+                var total = $lists.eq(index).find('.col-50').length;
+                $(this).attr('data-num', ++num);
+                if (total > 8) {
+                    var startNum = arr_card[index];
+                    arr_card[index] += 8;
+                    for (var m = startNum; m < arr_card[index]; m++) {
+                        console.log($lists.eq(index).find('.col-50').eq(m));
+                        $lists.eq(index).find('.col-50').eq(m).show();
+                    }
+                }
+            } else {
+                $(this).prev('.lists').append('<div class="col-100 text">该作品集的作品已经加载完成</div>');
+                $(this).remove();
+            }
+        });
+        is_weixin();
+
+        function is_weixin() {
+            var ua = navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == "micromessenger") {
+                if (Number(userSession) === 212625) {
+                    $('.ad>a').attr('href', 'http://w.url.cn/s/ALwoPwr#wechat_redirect');
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
